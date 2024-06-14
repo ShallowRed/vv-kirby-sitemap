@@ -19,7 +19,8 @@ Kirby::plugin('vv/sitemap', [
 
   'pagesMethods' => [
     'inSitemap' => function () {
-      $expression = '/' . A::join(A::map(option('vv.sitemap.ignore'), function ($item) {
+      $ignore = option('vv.sitemap.ignore', []);
+      $expression = '/' . A::join(A::map($ignore, function ($item) {
         return '(' . $item . ')';
       }), '|') . '/';
       return $this->filterBy('url', '!*', $expression);
