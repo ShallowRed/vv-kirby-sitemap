@@ -4,10 +4,12 @@
 <ul <?php echo attr($attrs);?>>
     <?php foreach ($sitemapPages ??= $site->pages()->inSitemap() as $page) : ?>
       <li data-depth="<?php echo $depth;?>">
+        <p>
         <?php echo Html::a(
             $page->url(),
-            [Html::tag('p', $page->title())]
+            $page->title()
         )?>
+        </p>
         <?php if ($page->hasChildren()) : ?>
             <?php snippet(
                 'blocks/sitemap',
